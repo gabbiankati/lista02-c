@@ -58,6 +58,24 @@ Cliente criarCliente() {
     return cliente;
 }
 
+void removerItem(Item** inicio, int pos) {
+    Item* atual = *inicio;
+    int i = 0;
+
+    while (atual->proximo != NULL && i < pos - 1) {
+        atual = atual->proximo;
+        i++;
+    }
+
+    if (atual != NULL) {
+        Item* itemRemover = atual->proximo;
+        Item* novoProximo = itemRemover->proximo;
+
+        atual->proximo = novoProximo;
+        free(itemRemover);
+    }
+}
+
 int main () {
     char continuar = 'N';
     Item* inicio = NULL;
